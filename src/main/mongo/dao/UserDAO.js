@@ -93,6 +93,7 @@ async function getUser(email)
         await client.connect();
         let collection=client.db('vehicle_buddy').collection('users');
         let result=await collection.findOne({"email":email.toLowerCase()});
+        
         await client.close();
         return result;
     }
