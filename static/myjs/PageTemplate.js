@@ -2,7 +2,7 @@ async function signOut()
 {   console.log("SigningOut");
     try{
 
-    let data=await $.ajax({method:'GET',url:'/user/logout'});
+    let data=await $.ajax({method:'GET',url:'/user/auth/logout'});
     if(data.success)
     {
         Swal.fire({
@@ -32,34 +32,25 @@ async function signOut()
     }
 }
 
-async function doRenderNav({user})
-{   console.log(user);
+async function doRenderNav()
+{   let data=await $.ajax({method:"GET",url:'/user/auth/loggedin'});
     let signInButton=$("#signIn");
     let signOutButton=$("#signOut");
     if($('#navbar')==undefined)
         return;
-    if(user==null||user==undefined)
-    {
-        console.log("Didn't get user for implict doAjax in templae, making explicit");
-        user=await $.ajax({method:"GET",url:'/user/getLoggedIn'});
-        user=user.data;
-        console.log(user);
-    }
-    if(user!=null)
+    let user=data.data;
+    console.log(user);
+    if(data.success)
         {
             signInButton.addClass('d-none');
             console.log(user.name);
 
-            if(user.role=='admin')
-                $('ul').first().prepend('<li><a href="adminpanel.html">Admin Panel</a></li>');
-               
-                
-            else
-                if(user.role=='seller')
-                $('ul').first().prepend('<li><a href="sellerpanel.html">Seller Panel</a></li>');
+
+            if(user.role=='seller')
+                $('ul').first().prepend('<li><a href="MyVehicles.html">My Vehicles</a></li><li><a href="MyVehicles.html">My Revenue</a></li>');
              else
                 if(user.role=='customer'||user.role==undefined)
-                    $('ul').first().prepend('<li><a href="mybookings.html">My Bookings</a></li>');
+                    $('ul').first().prepend('<li><a href="booknow.html">Book Now</a></li><li><a href="mybookings.html">My Bookings</a></li>');
             
             console.log(signOutButton.filter('span').first())
             //signOutButton.filter('span').first().text(user.username);

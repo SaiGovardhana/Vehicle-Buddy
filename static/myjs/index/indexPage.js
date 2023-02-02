@@ -2,7 +2,7 @@ async function doAjaxRequest()
 {
     let data=await $.ajax(
         {
-            url:'/vehicleCategories'
+            url:'/vehicle/categories'
         }
     );
     

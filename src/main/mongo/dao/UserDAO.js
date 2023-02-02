@@ -27,7 +27,7 @@ async function updateUser(email,user)
 {
     try
     {   //Existing editable properties
-        let validProperties=['name','password','address','dob','profile_pic'];
+        let validProperties=['name','password','address','dob','profilepic'];
         let filteredUser={};
         
         //Allow only specified properties to be set.

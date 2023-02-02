@@ -12,7 +12,8 @@ async function getLoggedInUserEndpoint(req,res)
     let result={data:{},message:"",success:false,redirect:false};
     try{
         //User injected by middleware
-        let user=req.locals.user;
+        let user=res.locals.user;
+        
         if(user==null)
         {
             result["data"]=undefined;
@@ -68,7 +69,7 @@ async function validateUserEndpoint(req,res)
             {
                 result["message"]=`Logged in ${user.name} bro`;
                 result["success"]=true;
-                res.cookie('user',JSON.stringify({name:name,password:password}),{maxAge:1000*60*60*10});
+                res.cookie('user',JSON.stringify({email:email,password:password}),{maxAge:1000*60*60*10});
             }
             else
             {
@@ -109,9 +110,9 @@ async function logoutUserEndpoint(req,res)
     let result={data:{},message:"",success:false,redirect:false};
     try
     {
-        res.cookie('user',{},{maxAge:0});
+        res.clearCookie('user');
         res.json({message:"Logging out bro :(",success:true,redirect:false})
-
+        return ;
     }
     catch(E)
     {

@@ -1,6 +1,6 @@
 async function doAjaxRequest()
 {
-    let data=await $.ajax({method:'GET',url:'/user/getLoggedIn'});
+    let data=await $.ajax({method:'GET',url:'/user/auth/loggedin'});
     
     console.log(data,"HERE");
     data=data;
@@ -16,7 +16,7 @@ async function submitChange()
     let profilepic=$('#profile').attr('src');
     try
     {
-        let response=await $.ajax({method:'PUT',url:'/user/editUser',data:JSON.stringify({profilepic:profilepic,email:email,name:name,dob:dob,address:address}),contentType:'application/json'})
+        let response=await $.ajax({method:'PUT',url:'/user/',data:JSON.stringify({profilepic:profilepic,email:email,name:name,dob:dob,address:address}),contentType:'application/json'})
         
         if(response.success)
         {

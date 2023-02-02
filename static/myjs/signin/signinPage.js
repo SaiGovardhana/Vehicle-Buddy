@@ -38,7 +38,7 @@ async function buttonClicked(e)
     }
     try{
     //Send request for authentication for server.
-    let respone=await $.ajax({method:'POST',url:'/user/authenticate',contentType:'application/json',data:JSON.stringify({email:email,password:password})});
+    let respone=await $.ajax({method:'POST',url:'/user/auth/login',contentType:'application/json',data:JSON.stringify({email:email,password:password})});
     
     //Process response
     if(respone.success)
