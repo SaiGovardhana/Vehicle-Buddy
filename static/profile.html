@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Travel Buddy</title>
+  <title>Vehicle Buddy</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -25,6 +25,7 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/select2.css">
   
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
@@ -35,6 +36,12 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <style>
+  .select2-selection__arrow b{
+      display:none !important;
+  }
+  </style>
 </head>
 
 <body>
@@ -162,23 +169,29 @@
             <form class="php-email-form">
               <div class="row">
 
-                <div class="col-md-6 form-group mt-3 mt-md-0 text-center">
+                <div class="col-12 form-group mt-3 mt-md-0 text-center">
                     Email
                   <input type="email" class="form-control " name="email" id="email" placeholder="Your Email" disabled>
                 </div>
                 
-              <div class="col-md-6  form-group mt-3 mt-md-0 text-center">
+              <div class="col-12  form-group mt-3 mt-md-0 text-center">
                     Name
                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Username" disabled>
               </div>
 
-              <div class="col-md-6  form-group mt-3 mt-md-0 text-center">
+              <div class=" col-12  form-group mt-3 mt-md-0 text-center">
                 Date of birth
                 <input type="date" name="dob"  class="form-control" id="dob" placeholder="Your DOB" disabled>
               </div>
-              <div class="col-md-6  form-group mt-3 mt-md-0 text-center">
-                Address
-                <input type="text" name="address"  class="form-control" id="address" placeholder="Your Address" disabled>
+              <div class=" col-12 container-fluid form-group mt-3 mt-md-0 text-center">
+                <div class="row text-center justify-content-center">Location</div>
+                <div class="row">
+                
+                <!-- <input type="text" name="location"  class="form-control" id="location" placeholder="Your Location" disabled> -->
+                
+                    <select class="js-example-responsive form-control" id="location"></select>
+                </div>
+            
               </div>
               </div>
 
@@ -280,6 +293,7 @@
   <script src="./assets/js/jquery.js"></script>
   <script src="./assets/js/sweetalert.js"></script>
   <script src="./assets/js/cropper.js"></script>
+  <script src="./assets/js/select2.js"></script>
   <script src="./myjs/PageTemplate.js"></script>
   <script src="./myjs//profile/profilePage.js"></script>
   <script src="./myjs/profile/profileCropper.js"></script>

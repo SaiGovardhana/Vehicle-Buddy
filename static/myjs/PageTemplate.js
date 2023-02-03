@@ -54,6 +54,7 @@ async function doRenderNav()
             
             console.log(signOutButton.filter('span').first())
             //signOutButton.filter('span').first().text(user.username);
+
             signOutButton=signOutButton.get(0);
             signOutButton.querySelector('span').innerText=user.name;
             signOutButton.querySelector('span').style.fontWeight="bolder";

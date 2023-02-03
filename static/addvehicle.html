@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Travel Buddy</title>
+  <title>Vehicle Buddy</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,16 +28,7 @@
   
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.js" integrity="sha512-79j1YQOJuI8mLseq9icSQKT6bLlLtWknKwj1OpJZMdPt2pFBry3vQTt+NZuJw7NSd1pHhZlu0s12Ngqfa371EA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-
- 
-  <!-- =======================================================
-  * Template Name: Logis - v1.3.0
-  * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  
   
 </head>
 
@@ -50,26 +41,31 @@
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Travel Buddy</h1>
+        <h1>Vehicle Buddy</h1>
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html">Home</a></li>
-   
-
-          <li><a href="contact.html" >Contact</a></li>
-          <li id="signIn" class="d-none"><a class="get-a-quote" href="signin.html">Sign In</a></li>
-          <li id="signOut" class="dropdown  d-none"><a href="#"><span></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          
+          <li><a href="index.html" class="active">Home</a></li>
+          
+       
+          <li id="signOut" class="dropdown d-none  "><a href="#"><span></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a href="profile.html">Profile</a></li>
               <li><a href="#">Sign Out</a></li>
             </ul>
           </li>
+
+          
+          <li id="signIn"><a class="get-a-quote" href="signin.html">Sign In</a></li>
+          
         </ul>
       </nav><!-- .navbar -->
+
+
 
     </div>
   </header><!-- End Header -->
@@ -83,25 +79,19 @@
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>Service Panel</h2>
+              <h2>Add Vehicle</h2>
              
             </div>
           </div>
         </div>
       </div>
-      <nav>
-        <div class="container">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Service Panel</li>
-          </ol>
-        </div>
-      </nav>
+ 
+
     </div><!-- End Breadcrumbs -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
-        <h1 class="h1 text-center">Edit Services</h1>
+        <h1 class="h1 text-center">Add Your Vehicle</h1>
       <div class="container" data-aos="fade-up">
 
 
@@ -113,40 +103,23 @@
           <div class="col">
             <form class="php-email-form">
               <div class="row">
-                
-                <div class="col-md-6 form-group mt-3 ">
-                    Service Name
-                  <input type="text" class="form-control" name="email" id="service-name" placeholder="Service Name" required>
+
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="text" class="form-control" name="vehiclename" id="vehiclename" placeholder="Vehicle Name" required>
                 </div>
-                <div class="col-md-6 form-group mt-3 ">
-                    Service Image
-                    <input type="text" class="form-control" name="name" id="service-img" placeholder="Service Image URL" required>
-                  </div>
-                  <div class="col-md-6 form-group mt-3 ">
-                    Service Icon
-                    <input type="text" class="form-control" name="name" id="service-icon" placeholder="Service Icon" required>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                    <input type="text" class="form-control" name="vehiclebrand" id="vehiclebrand" placeholder="Vehicle Brand" required>
                   </div>
         
               <div class="col-md-6 mt-3  form-group">
-                Service Description
-                <input type="text" name="service-description" class="form-control" id="service-description" placeholder="Service Description" required>
+                <input type="text" name="vehicletype" class="form-control" id="vehicletype" placeholder="Vehicle Type" required>
               </div>
               <div class="col-md-6 mt-3  form-group">
-                Service Detail Page Image
-                <input type="text" name="service-details-img" class="form-control" id="service-details-image" placeholder="Service Details Image" required>
-              </div>
-              <div class="col-md-6 mt-3  form-group">
-                Service Details Title
-                <input type="text" name="service-details-title" class="form-control" id="service-details-title" placeholder="Service Details Title" required>
-              </div>
-              <div class="col-md-6 mt-3  form-group">
-                Service Details Description
-                <input type="text" name="service-details-description" class="form-control" id="service-details-description" placeholder="Service Details Description" required>
+                <input type="number" name="vehicleprice" class="form-control" id="vehicleprice" placeholder="Vehicle Price" required>
               </div>
               </div>
 
-              <div class="text-center"><div class="btn submit mt-3 btn-primary" id="signUp" >Submit</div></div>
-              <div class="text-center"><div class="delete mt-3 btn  btn-danger" id="signUp" >Delete</div></div>
+              <div class="text-center"><div class="btn btn-primary" id="signUp" >Sign Up</div></div>
             </form>
           </div><!-- End Contact Form -->
 
@@ -174,44 +147,7 @@
             <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
-<!--
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
 
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-          <h4>Contact Us</h4>
-          <p>
-            A108 Adam Street <br>
-            New York, NY 535022<br>
-            United States <br><br>
-            <strong>Phone:</strong> +1 5589 55488 55<br>
-            <strong>Email:</strong> info@example.com<br>
-          </p>
-
-        </div>
-
-      </div>
-    </div>
--->
     <div class="container mt-4">
       <div class="copyright">
         &copy; Copyright <strong><span>Travel Buddy</span></strong>. All Rights Reserved
@@ -241,6 +177,13 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="./assets/js/jquery.js"></script>
+  <script src="./assets/js/sweetalert.js"></script>
+  <script src="./myjs/PageTemplate.js"></script>
+  <script >
+    PageTemplate()
+
+  </script>
 
 </body>
 

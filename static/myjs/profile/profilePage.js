@@ -1,3 +1,28 @@
+async function autoCompleteLocation(data,initial)
+{
+
+function render(data,initial){
+    
+    for(let [k,v] of Object.entries(data))
+    {
+      for(let x of v)
+        { let cur=x+", "+k;
+          let newOption = new Option(cur, cur, false, false);
+          $('#location').append(newOption).trigger('change');
+        }
+    }
+    $("#location").trigger('change')
+    }
+
+    render(data,initial); 
+
+      console.log(data);
+      console.log(initial)
+      $('#location').select2({'selectOnClose':true});
+      $("#location").prop('disabled',true);
+      $("#location").val(initial).trigger('change');
+}
+
 async function doAjaxRequest()
 {
     let data=await $.ajax({method:'GET',url:'/user/auth/loggedin'});
@@ -12,11 +37,11 @@ async function submitChange()
     let email=$("#email").val();
     let name=$('#name').val();
     let dob=$('#dob').val();
-    let address=$("#address").val();
+    let location=$("#location").val();
     let profilepic=$('#profile').attr('src');
     try
     {
-        let response=await $.ajax({method:'PUT',url:'/user/',data:JSON.stringify({profilepic:profilepic,email:email,name:name,dob:dob,address:address}),contentType:'application/json'})
+        let response=await $.ajax({method:'PUT',url:'/user/',data:JSON.stringify({profilepic:profilepic,email:email,name:name,dob:dob,location:location}),contentType:'application/json'})
         
         if(response.success)
         {
@@ -80,17 +105,23 @@ async function doRender(data)
     $("#email").val(user.email);
     $("#name").val(user.name);
     $("#dob").val(user.dob);
-    $("#address").val(user.address);
+    $("#location").val(user.location);
     if(user.profilepic!=undefined)
       $("#profile").attr('src',user.profilepic);
+   let locData= await  $.ajax({url:'/data/india.json',method:'GET'});
+   autoCompleteLocation(locData,user.location);
 }
 async function toggleEditing()
 {   let name=$('#name');
     let email=$('#email');
     let dob=$('#dob');
-    let address=$('#address');
+    let location=$('#location');
     let input=$('#input');
-    let arr=[input,name,dob,address];
+    let arr=[input,name,dob];
+    if(location.prop('disabled'))
+      $("#location").prop('disabled',false);
+    else
+    $("#location").prop('disabled',true);
     arr.forEach(x=>{   console.log("HERE",x.attr('disabled')==='disabled')
 
             if(x.attr('disabled')=='disabled')
