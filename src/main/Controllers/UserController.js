@@ -36,8 +36,9 @@ async function addUserEndpoint(req,res)
                 else
                 {
                     await addUser(user);
+                    user=await getUser(user.email);
                     result.success=true;
-                    res.cookie('user',JSON.stringify({email:user.email,password:user.password}),{maxAge:1000*60*60*10});
+                    res.cookie('user',JSON.stringify({name:user.name,email:user.email,password:user.password,role:user.role}),{maxAge:1000*60*60*10});
                     result.message="Succesfully signed up user.";
 
                 }

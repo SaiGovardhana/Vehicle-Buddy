@@ -69,7 +69,7 @@ async function validateUserEndpoint(req,res)
             {
                 result["message"]=`Logged in ${user.name} bro`;
                 result["success"]=true;
-                res.cookie('user',JSON.stringify({email:email,password:password}),{maxAge:1000*60*60*10});
+                res.cookie('user',JSON.stringify({name:user.name,email:user.email,password:user.password,role:user.role}),{maxAge:1000*60*60*10});
             }
             else
             {

@@ -1,3 +1,4 @@
+const { getUser } = require("../../mongo/dao/UserDAO");
 
 /**
  * 
@@ -8,8 +9,13 @@ async function injectUser(req,res,next)
 {
     if(req.cookies.user!=null)
         {   let {email,name,password,role}=JSON.parse(req.cookies.user);
-
-            res.locals.user={"email":email,"name":name,"password":password};
+            user=await getUser(email)
+            if(user==null)
+                {
+                next();
+                return;
+                }
+            res.locals.user={"email":user.email,"name":user.name,"password":user.password,"role":user.role};
             console.log(res.locals.user);
         }
     next();

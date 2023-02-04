@@ -1,37 +1,82 @@
 const fs=require('fs');
 
-let categories=[
+let landingPageCards=[
+            {
+                role:"default",
+                cards:[
+            {
+                "card-description": "Rent Vehicles in your location. Renting just takes a minute or two. ",
+                "card-icon": "fa-car",
+                "card-name": "Rent a car",
+                "card-href":"/signin.html"
+                    
+            },
+
+            {
+                "card-description": "Have a car lying around in your house? Then lease your car to many of the people wanting it.",
+                "card-icon": "fa-inr",
+                "card-name": "Lease Your Car.",
+                "card-href":"/signin.html"
+            }
+            ,
+            {
+                "card-description": "24/7 , always open for service. Operate all across india. ",
+                "card-icon": "fa-clock",
+                "card-name": "We're always here",
+                "card-href":"/signin.html"
+            
+
+        }
+        ]
+        },
+        {
+            role:"customer",
+            cards:[
+        {
+            "card-name": "My Bookings",
+            "card-icon": "fa-book",
+            "card-description": "Your upcoming and previous vehicle bookings",
+            "card-href":"/mybookings.html"
+                
+        },
+
+        {
+            "card-description": "Rent Vehicles in your location. Renting just takes a minute or two. ",
+            "card-icon": "fa-car",
+            "card-name": "Rent a car",
+            "card-href":"/booknow.html"
+        }
+
+    ]
+    },
     {
-        "category-description": "Two wheelers to travel in the city. Perfect for travel in busy cities. ",
-        "category-icon": "fa-motorcycle",
-        "category-name": "Bikes",
-        "category-count":12       
+        role:"seller",
+        cards:[
+    {
+        "card-description": "Your vehicles put up for lease",
+        "card-icon": "fa-car",
+        "card-name": "My Vehicles",
+        "card-href":"/myvehicles.html"
+            
     },
 
     {
-        "category-description": "Choose from suvs, sedans, hatch-backs. Travel with no issue. ",
-        "category-icon": "fa-car-alt",
-        "category-name": "Cars",
-        "category-count":15
-
-   
+        "card-name": "My Revenue",
+        "card-icon": "fa-inr",
+        "card-description": "Total Income made for this account",
+        "card-href":"/myrevenue.html"
     }
-    ,
-    {
-        "category-description": "Perfect for families, for tours. Spacious leg room, perfect for camping. ",
-        "category-icon": "fa-shuttle-van",
-        "category-name": "Vans",
-        "category-count":7
 
-   }
+]
+},
 
 ];
 let statesAndCountires=JSON.parse(fs.readFileSync(__dirname+'/data/india.json',{encoding:'utf-8'}));
 let curDb=db.getSiblingDB('vehicle_buddy');
 
 
-let vehicleCollection=curDb.getCollection('vehicle_categories');
-vehicleCollection.insertMany(categories);
+let indexCardCollection=curDb.getCollection('index_cards');
+indexCardCollection.insertMany(landingPageCards);
 
 
 let autocomplete_states=[]
