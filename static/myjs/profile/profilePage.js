@@ -1,26 +1,28 @@
 async function autoCompleteLocation(data,initial)
 {
 
-function render(data,initial){
-    
+function render(data){
+    let result=[]
     for(let [k,v] of Object.entries(data))
     {
       for(let x of v)
         { let cur=x+", "+k;
-          let newOption = new Option(cur, cur, false, false);
-          $('#location').append(newOption).trigger('change');
+          result.push({id:cur,text:cur,selected:(cur==initial)?true:false});
         }
     }
-    $("#location").trigger('change')
+      return result;
     }
 
-    render(data,initial); 
+    let result=render(data,initial); 
+    console.log(initial);
+    
+     // $('#location').select2({'selectOnClose':true,theme:"bootstrap-5",    dropDownCssClass: "select2--large"});
+     $('#location').select2({placeholder:"Select Location","data":result,width:"100%","theme":"bootstrap-5"});
+     $("#location").val(initial).trigger('change');
 
-      console.log(data);
-      console.log(initial)
-      $('#location').select2({'selectOnClose':true});
-      $("#location").prop('disabled',true);
-      $("#location").val(initial).trigger('change');
+      
+   
+  
 }
 
 async function doAjaxRequest()
@@ -109,7 +111,8 @@ async function doRender(data)
     if(user.profilepic!=undefined)
       $("#profile").attr('src',user.profilepic);
    let locData= await  $.ajax({url:'/data/india.json',method:'GET'});
-   autoCompleteLocation(locData,user.location);
+   
+    autoCompleteLocation(locData,user.location);
 }
 async function toggleEditing()
 {   let name=$('#name');
