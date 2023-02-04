@@ -11,7 +11,7 @@ function validateEmail(mail)
 }
 
 async function buttonClicked(e)
-{
+{   
     let email=$("#email").val();
     let password=$("#password").val();
     let name=$("#name").val();
@@ -49,9 +49,10 @@ async function buttonClicked(e)
           });
           return;
     }
+    let role=$("#role").val();
     try{
     //Send request for authentication for server.
-    let respone=await $.ajax({method:'POST',url:'/user/',contentType:'application/json',data:JSON.stringify({email:email,name:name,password:password})});
+    let respone=await $.ajax({method:'POST',url:'/user/',contentType:'application/json',data:JSON.stringify({role:role,email:email,name:name,password:password})});
     
     //Process response
     if(respone.success)
