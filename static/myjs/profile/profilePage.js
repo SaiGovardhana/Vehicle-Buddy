@@ -1,29 +1,3 @@
-async function autoCompleteLocation(data,initial)
-{
-
-function render(data){
-    let result=[]
-    for(let [k,v] of Object.entries(data))
-    {
-      for(let x of v)
-        { let cur=x+", "+k;
-          result.push({id:cur,text:cur,selected:(cur==initial)?true:false});
-        }
-    }
-      return result;
-    }
-
-    let result=render(data,initial); 
-    console.log(initial);
-    
-     // $('#location').select2({'selectOnClose':true,theme:"bootstrap-5",    dropDownCssClass: "select2--large"});
-     $('#location').select2({placeholder:"Select Location","data":result,width:"100%","theme":"bootstrap-5"});
-     $("#location").val(initial).trigger('change');
-
-      
-   
-  
-}
 
 async function doAjaxRequest()
 {
@@ -39,7 +13,7 @@ async function submitChange()
     let email=$("#email").val();
     let name=$('#name').val();
     let dob=$('#dob').val();
-    let location=$("#location").val();
+    let location=$("#autocompletestate").val();
     let profilepic=$('#profile').attr('src');
     try
     {
@@ -107,24 +81,24 @@ async function doRender(data)
     $("#email").val(user.email);
     $("#name").val(user.name);
     $("#dob").val(user.dob);
-    $("#location").val(user.location);
+    $("#autocompletestate").val(user.location);
     if(user.profilepic!=undefined)
       $("#profile").attr('src',user.profilepic);
-   let locData= await  $.ajax({url:'/data/india.json',method:'GET'});
+   let locData= await  $.ajax({url:'/autocomplete/states',method:'GET'});
    
-    autoCompleteLocation(locData,user.location);
+    autoCompleteLocation(user.location);
 }
 async function toggleEditing()
 {   let name=$('#name');
     let email=$('#email');
     let dob=$('#dob');
-    let location=$('#location');
+    let location=$('#autocompletestate');
     let input=$('#input');
     let arr=[input,name,dob];
     if(location.prop('disabled'))
-      $("#location").prop('disabled',false);
+      $("#autocompletestate").prop('disabled',false);
     else
-    $("#location").prop('disabled',true);
+    $("#autocompletestate").prop('disabled',true);
     arr.forEach(x=>{   console.log("HERE",x.attr('disabled')==='disabled')
 
             if(x.attr('disabled')=='disabled')

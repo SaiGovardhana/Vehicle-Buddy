@@ -36,7 +36,13 @@ vehicleCollection.insertMany(categories);
 
 let autocomplete_states=[]
 for(let [k,v] of Object.entries(statesAndCountires))
-    autocomplete_states.push({state:k,cities:v});
+    {   for(let city of v)
+        {
+            autocomplete_states.push({state:k,city:city,location:`${city}, ${k}`});
+        }
+    }
 
 let statesCollection=curDb.getCollection('autocomplete_states');
 statesCollection.insertMany(autocomplete_states);
+statesCollection.createIndex({state:1,city:1});
+statesCollection.createIndex({location:1});
