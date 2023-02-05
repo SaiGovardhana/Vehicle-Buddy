@@ -95,7 +95,7 @@ for(let [k,v] of Object.entries(statesAndCountires))
             autocomplete_states.push({state:k,city:city,location:`${city}, ${k}`});
         }
     }
-let cars=JSON.parse(fs.readFileSync('./data/cars.json',{encoding:'utf-8'}));
+let cars=JSON.parse(fs.readFileSync(__dirname+'/data/cars.json',{encoding:'utf-8'}));
 cars=cars.cars;
 let autocomplete_cars=[];
 for(let x of cars)

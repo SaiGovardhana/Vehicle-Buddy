@@ -1,6 +1,6 @@
 async function doAjaxRequest()
 {
-    let data=await $.ajax({"url":'/vehicle/allVehicles',"method":"GET"});
+      let data=await $.ajax({"url":'/vehicle/seller/getVehicles',"method":"GET"});
 
     return data;
 }
@@ -27,6 +27,8 @@ async function renderCard(curCard)
 async function doRenderPage(data)
 {
     let renderedString="";
+    if(data.data.length==0)
+      return ;
     for(let x of data.data)
         renderedString+=await renderCard(x);
     $("#servicecontainer").html(renderedString);

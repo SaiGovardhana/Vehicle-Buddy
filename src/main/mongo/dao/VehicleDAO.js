@@ -14,7 +14,7 @@ async function addVehicle(vehicle,sellermail)
         state=state.trim();
         modelName=modelName.trim();
         brand=brand.trim();
-        await collection.insertOne({"selleremail":sellermail,location:location,vehicleprice:vehicleprice,pic:profilepic,model:modelName,brand:brand,fullmodel:model,city:city,state:state,model:model});
+        await collection.insertOne({"selleremail":sellermail,location:location,vehicleprice:vehicleprice,pic:profilepic,model:modelName,brand:brand,fullmodel:model,city:city,state:state});
     
         return true;
     }
@@ -32,15 +32,20 @@ async function addVehicle(vehicle,sellermail)
 
 }
 
-async function getVehicles()
+async function getVehicles(email)
 {
     let client=new MongoClient(process.env.MONGO_URL);
     try
     {   await client.connect();
         //await client.connect();
+
         let collection=client.db('vehicle_buddy').collection('vehicles');
-       
-        let cursor= collection.find({});
+        let query={};
+        
+        if(email!=undefined)
+            query["selleremail"]=email;
+
+        let cursor= collection.find(query);
         let results=[];
         while(await cursor.hasNext())
             {

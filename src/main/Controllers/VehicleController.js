@@ -49,7 +49,7 @@ async function getVehiclesEndpoint(req,res)
 {
     let result={};
     try
-    {
+    {   
 
         let data=await getVehicles();
         result.data=data;
@@ -63,4 +63,33 @@ async function getVehiclesEndpoint(req,res)
     res.json(result);
 }
 
-module.exports={addVehicleEndpoint,getVehiclesEndpoint};
+async function getSellerVehicleEndpoint(req,res)
+{
+    let result={};
+    try
+    {   let email=undefined;
+        if(res.locals.user!=undefined)
+            {
+                email=res.locals.user.email;
+            }
+        if(email==undefined)
+        {
+            result.data=[];
+            result.success=false;
+        }
+        else{
+            let data=await getVehicles(email);
+            result.data=data;
+            result.success=true;
+        }
+    }
+    catch(E)
+    {   result.success=false;
+        result.data=[];
+        console.log(E);
+
+    }
+    res.json(result);
+}
+
+module.exports={addVehicleEndpoint,getVehiclesEndpoint,getSellerVehicleEndpoint};
