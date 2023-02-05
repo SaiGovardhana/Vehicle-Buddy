@@ -24,16 +24,19 @@
   <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/cropper.css">
   
   
 </head>
 
 <body>
 
+  
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -64,8 +67,6 @@
           
         </ul>
       </nav><!-- .navbar -->
-
-
 
     </div>
   </header><!-- End Header -->
@@ -124,8 +125,8 @@
           <div class="col">
             <form class="php-email-form">
               <label class="label row justify-content-center rounded" >
-                <img class="col-lg-3 col-md-4 col-6 rounded-circle" id="profile" src="./assets/img/pfdef.jpg" alt="avatar">
-                <input disabled type="file" class="sr-only" id="input" name="image" accept="image/*">
+                <img class="col-lg-3 col-md-4 col-6 " id="profile" src="./assets/img/pfdef.jpg" alt="avatar">
+                <input type="file" class="sr-only" id="input" name="image" accept="image/*">
               </label>
 
               <div class="row">
@@ -203,7 +204,10 @@
   <script src="assets/js/main.js"></script>
   <script src="./assets/js/jquery.js"></script>
   <script src="./assets/js/sweetalert.js"></script>
+  <script src="./assets//js/cropper.js"></script>
+  <script src="./myjs/addvehicle/profileCropper.js"></script>
   <script src="./myjs/PageTemplate.js"></script>
+  <script src=""></script>
   <script >
     PageTemplate();
 

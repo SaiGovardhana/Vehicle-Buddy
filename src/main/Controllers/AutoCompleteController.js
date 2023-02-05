@@ -1,5 +1,5 @@
 const { Request,Response } = require("express");
-const { getStates, getCities, getLocations } = require("../mongo/dao/AutocompleteDAO");
+const { getStates, getCities, getLocations, getCarTypes } = require("../mongo/dao/AutocompleteDAO");
 
 /**
  * Function to get states
@@ -86,4 +86,34 @@ async function getLocationsAutoCompleteEndpoint(req,res)
     res.json(result);
 }
 
-module.exports={getStatesAutoCompleteEndpoint,getCitiesAutoCompleteEndpoint,getLocationsAutoCompleteEndpoint};
+/**
+ * Function used for select location
+ * @param {Request} req 
+ * @param {Response} res 
+ */
+async function getCarTypesAutoCompleteEndpoint(req,res)
+{   let result={}
+    try
+    {   if(req.query.carname==undefined)
+        {
+            result.data=[];
+            result.success=false;
+        }
+        else
+        {
+            let cars=await getCarTypes(req.query.carname);
+            result.data=cars;
+            result.success=true;
+        }
+        
+    }
+    catch(E)
+    {   result.data=null;
+        result.success=false;
+        console.log(E);
+
+    }
+    res.json(result);
+}
+
+module.exports={getStatesAutoCompleteEndpoint,getCitiesAutoCompleteEndpoint,getLocationsAutoCompleteEndpoint,getCarTypesAutoCompleteEndpoint};

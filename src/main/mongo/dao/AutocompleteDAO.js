@@ -83,4 +83,30 @@ async function getLocations(search)
     return null
 }
 
-module.exports={getStates,getCities,getLocations};
+async function getCarTypes(search)
+{   let client=new MongoClient(process.env.MONGO_URL);
+    try{
+        
+        await client.connect();
+        let collection=client.db('vehicle_buddy').collection('autocomplete_cars');
+        let result=collection.find({name:{'$regex' : `${search}`, '$options' : 'i'}},{projection:{_id:0,name:1}});
+        let cars=[]
+        while(await result.hasNext())
+            cars.push((await result.next()).name);
+       
+        if(result!=null)
+        return cars;
+
+    }
+    catch(E)
+    {   console.log(E)
+        
+    }
+    finally
+    {
+        await client.close();
+    }
+    return null
+}
+
+module.exports={getStates,getCities,getLocations,getCarTypes};

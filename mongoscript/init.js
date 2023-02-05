@@ -79,15 +79,26 @@ let indexCardCollection=curDb.getCollection('index_cards');
 indexCardCollection.insertMany(landingPageCards);
 
 
-let autocomplete_states=[]
+let autocomplete_states=[];
 for(let [k,v] of Object.entries(statesAndCountires))
     {   for(let city of v)
         {
             autocomplete_states.push({state:k,city:city,location:`${city}, ${k}`});
         }
     }
+let cars=JSON.parse(fs.readFileSync('./data/cars.json',{encoding:'utf-8'}));
+cars=cars.cars;
+let autocomplete_cars=[];
+for(let x of cars)
+{
+    autocomplete_cars.push({model:x.model,brand:x.brand,name:`${x.model}, ${x.brand}`});
+}
 
 let statesCollection=curDb.getCollection('autocomplete_states');
+let carsCollection=curDb.getCollection('autocomplete_cars');
 statesCollection.insertMany(autocomplete_states);
 statesCollection.createIndex({state:1,city:1});
 statesCollection.createIndex({location:1});
+carsCollection.insertMany(autocomplete_cars);
+carsCollection.createIndex({brand:1,model:1});
+carsCollection.createIndex({name:1});
