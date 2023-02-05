@@ -26,7 +26,8 @@ let landingPageCards=[
                 "card-href":"/signin.html"
             
 
-        }
+            },
+            
         ]
         },
         {
@@ -65,6 +66,14 @@ let landingPageCards=[
         "card-icon": "fa-inr",
         "card-description": "Total Income made for this account",
         "card-href":"/myrevenue.html"
+    },
+    {
+        "card-description": "Add a new vehicle to lease out.",
+        "card-icon": "fa-plus",
+        "card-name": "Add Vehicle",
+        "card-href":"/addvehicle.html"
+    
+
     }
 
 ]

@@ -1,4 +1,4 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -55,18 +55,22 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-         
+          
           <li><a href="index.html">Home</a></li>
-    
-       
-          <li><a class="get-a-quote" href="signup.html">Sign Up</a></li>
+          <li id="signIn"><a class="get-a-quote" href="signin.html">Sign In</a></li>
+          <li id="signOut" class="dropdown d-none"><a href="#"><span></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Sign Out</a></li>
+            </ul>
+          </li>
+          
         </ul>
       </nav><!-- .navbar -->
 
     </div>
   </header><!-- End Header -->
   <!-- End Header -->
-
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -75,7 +79,7 @@
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>My Vehicles</h2>
+              <h2>Book Now</h2>
              
             </div>
           </div>
@@ -85,20 +89,55 @@
         <div class="container">
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li>My Vehicles</li>
+            <li>Book Now</li>
           </ol>
         </div>
       </nav>
     </div><!-- End Breadcrumbs -->
+    <section id="service" class="services pt-0">
+      <div class="container" data-aos="fade-up">
 
-    <div class="container-fluid">
-        <div class="row container-fluid justify-content-around align-items-center m-1">
-            <div class="h5  col-3">Total Vehicles:<span class="vehiclecount">5</span></div>
-            <div class="h5 col-3">Total Bookings:<span class="bookingcount">5</span></div>
-            <div class="btn btn-primary col-3 h5">Add Vehicle</div>
+        <div class="section-header">
+          <span>Vehicles</span>
+          <h2>Vehicles</h2>
+
         </div>
-    </div>
 
+        <div id="servicecontainer" class="row gy-4">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="mycard card">
+              <div class="card-img">
+                <img src="assets/img/bus.jpg" alt=""  class="card-img-top">
+              </div>
+              <h3><a href="service-details.html" class="stretched-link">Transport</a></h3>
+              <p>Reach your destinations with ease. Choose from various modes Of transport that satisfy your needs. </p>
+            </div>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="mycard card">
+              <div class="card-img-top">
+                <img src="assets/img/hotels.jpg"  alt="" class="card-img-top" >
+              </div>
+              <h3><a href="service-details.html" class="stretched-link">Hotels</a></h3>
+              <p >Choose from a variety of hotels for accomidations that best suits your requirements.</p>
+            </div>
+          </div><!-- End Card Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="mycard card">
+              <div class="card-img-top">
+                <img src="assets/img/tour.jpg" alt="" class="card-img-top">
+              </div>
+              <h3><a href="service-details.html" class="stretched-link">Tours</a></h3>
+              <p>We take care of your transport, accomidation, sight seeing. Make you journey and vacation easier.</p>
+            </div>
+          </div><!-- End Card Item -->
+
+
+      </div>
+    </section><!-- End Services Section -->
 
 
   </main><!-- End #main -->
@@ -153,7 +192,7 @@
   <script src="./assets/js/sweetalert.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="myjs/PageTemplate.js"></script>
-  <script src="myjs/signin/signinPage.js"></script>
+  <script src="myjs/booknow/booknow.js"></script>
 
 </body>
 
