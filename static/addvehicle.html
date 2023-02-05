@@ -70,7 +70,28 @@
     </div>
   </header><!-- End Header -->
   <!-- End Header -->
-
+        <!--- Code for modal crop-->
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Crop the image</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="img-container">
+                  <img id="image" src="">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="crop">Crop</button>
+              </div>
+            </div>
+          </div>
+        </div><!--Modal -->
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -102,24 +123,27 @@
 
           <div class="col">
             <form class="php-email-form">
-              <div class="row">
+              <label class="label row justify-content-center rounded" >
+                <img class="col-lg-3 col-md-4 col-6 rounded-circle" id="profile" src="./assets/img/pfdef.jpg" alt="avatar">
+                <input disabled type="file" class="sr-only" id="input" name="image" accept="image/*">
+              </label>
 
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="text" class="form-control" name="vehiclename" id="vehiclename" placeholder="Vehicle Model" required>
+              <div class="row">
+                <div class=" col-md-6  col-12 container-fluid form-group mt-3 mt-md-0 text-center">
+                  Vehicle Model
+                  <select  name="autocompletemodel"  class="overflow-hidden form-control" id="autocompletemodel" placeholder="Vehicle Model" required> </select>
                 </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                    <input type="text" class="form-control" name="vehiclebrand" id="vehiclebrand" placeholder="Vehicle Brand" required>
-                  </div>
-        
-              <div class="col-md-6 mt-3  form-group">
-                <input type="text" name="vehicletype" class="form-control" id="vehicletype" placeholder="Vehicle Type" required>
-              </div>
-              <div class="col-md-6 mt-3  form-group">
+                <div class=" col-md-6  col-12 container-fluid form-group mt-3 mt-md-0 text-center">
+                  Vehicle Location
+                  <select  name="autocompletestate"  class="overflow-hidden form-control" id="autocompletestate" placeholder="Your Location" required> </select>
+                </div>
+              <div class="col-md-6 mt-3 text-center justify-content-center  form-group">
+                Vehicle Price
                 <input type="number" name="vehicleprice" class="form-control" id="vehicleprice" placeholder="Vehicle Price" required>
               </div>
               </div>
 
-              <div class="text-center"><div class="btn btn-primary" id="signUp" >Sign Up</div></div>
+              <div class="text-center"><div class="btn btn-primary" id="signUp" >Add vehicle</div></div>
             </form>
           </div><!-- End Contact Form -->
 
@@ -181,7 +205,7 @@
   <script src="./assets/js/sweetalert.js"></script>
   <script src="./myjs/PageTemplate.js"></script>
   <script >
-    PageTemplate()
+    PageTemplate();
 
   </script>
 

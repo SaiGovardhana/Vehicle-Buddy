@@ -39,7 +39,7 @@ async function doRenderNav()
     if($('#navbar')==undefined)
         return;
     let user=data.data;
-    console.log(user);
+    console.log("GOT USER",data);
     if(data.success)
         {
             signInButton.addClass('d-none');
