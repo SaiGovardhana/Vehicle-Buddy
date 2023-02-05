@@ -84,9 +84,9 @@ async function doRender(data)
     $("#autocompletestate").val(user.location);
     if(user.profilepic!=undefined)
       $("#profile").attr('src',user.profilepic);
-   let locData= await  $.ajax({url:'/autocomplete/states',method:'GET'});
    
-    autoCompleteLocation(user.location);
+   
+    
 }
 async function toggleEditing()
 {   let name=$('#name');
@@ -135,9 +135,11 @@ async function toggleEditing()
     
 
 }
-async function doRegisterListener()
+async function doRegisterListener(data)
 {   $('#edit').on('click',toggleEditing);
     $('#save').on('click',submitChange);
+    
+    autoCompleteLocation(data.data.location);
 }
 
 PageTemplate(doAjaxRequest,doRender,doRegisterListener);

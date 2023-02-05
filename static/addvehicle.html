@@ -30,6 +30,9 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/cropper.css">
+  <link rel="stylesheet" href="./assets/css/select2.css">
+  <link rel="stylesheet" href="./assets/css/select2-bootstrap-theme.css">
+  
   
   
 </head>
@@ -125,7 +128,7 @@
           <div class="col">
             <form class="php-email-form">
               <label class="label row justify-content-center rounded" >
-                <img class="col-lg-3 col-md-4 col-6 " id="profile" src="./assets/img/pfdef.jpg" alt="avatar">
+                <img class="col-lg-3 col-md-4 col-6 " id="profile" src="./myimages/cardef.jpeg" alt="avatar">
                 <input type="file" class="sr-only" id="input" name="image" accept="image/*">
               </label>
 
@@ -136,7 +139,7 @@
                 </div>
                 <div class=" col-md-6  col-12 container-fluid form-group mt-3 mt-md-0 text-center">
                   Vehicle Location
-                  <select  name="autocompletestate"  class="overflow-hidden form-control" id="autocompletestate" placeholder="Your Location" required> </select>
+                  <select  name="autocompletestate"  class="overflow-hidden form-control" id="autocompletestate" placeholder="Vehicle Location" required> </select>
                 </div>
               <div class="col-md-6 mt-3 text-center justify-content-center  form-group">
                 Vehicle Price
@@ -144,7 +147,7 @@
               </div>
               </div>
 
-              <div class="text-center"><div class="btn btn-primary" id="signUp" >Add vehicle</div></div>
+              <div class="text-center"><div class="btn btn-primary" id="submitVehicle" >Add vehicle</div></div>
             </form>
           </div><!-- End Contact Form -->
 
@@ -205,13 +208,12 @@
   <script src="./assets/js/jquery.js"></script>
   <script src="./assets/js/sweetalert.js"></script>
   <script src="./assets//js/cropper.js"></script>
+  <script src="./assets/js/select2.js"></script>
   <script src="./myjs/addvehicle/profileCropper.js"></script>
   <script src="./myjs/PageTemplate.js"></script>
-  <script src=""></script>
-  <script >
-    PageTemplate();
+  <script src="./myjs/addvehicle/autoComplete.js"></script>
+  <script src="./myjs/addvehicle/addVehicle.js"></script>
 
-  </script>
 
 </body>
 

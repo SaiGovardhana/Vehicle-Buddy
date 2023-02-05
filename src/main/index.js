@@ -5,6 +5,7 @@ const { userRouter } = require("./routes/UserRouter");
 const { indexRouter } = require("./routes/indexPageRouter");
 const { autoCompleteRouter } = require('./routes/AutoCompleteRouter');
 const { injectUser } = require('./Controllers/middleware/InjectUser');
+const { vehicleRouter } = require('./routes/VehicleRouter');
 
 let app=express();
 app.set('case sensitive routing', false);
@@ -15,5 +16,5 @@ app.use(injectUser);
 app.use('/autocomplete',autoCompleteRouter);
 app.use('/user',userRouter);
 app.use('/index',indexRouter);
-
+app.use('/vehicle',vehicleRouter);
 app.listen(4292);
