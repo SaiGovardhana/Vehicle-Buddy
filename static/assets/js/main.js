@@ -4,18 +4,19 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+const preloader = document.querySelector('#preloader');
+if (preloader) {
+  window.addEventListener('preloaderend', () => {
+    preloader.remove();
+  });
+}
 document.addEventListener('DOMContentLoaded', () => {
   "use strict";
 
   /**
    * Preloader
    */
-  const preloader = document.querySelector('#preloader');
-  if (preloader) {
-    window.addEventListener('preloaderend', () => {
-      preloader.remove();
-    });
-  }
+
 
   /**
    * Sticky header on scroll

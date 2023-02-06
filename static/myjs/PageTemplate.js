@@ -78,7 +78,7 @@ async function doRenderNav()
  */
 async function PageTemplate(doAjaxRequest,doRenderPage,doRegisterListener,doHook)
 {   let data={};
-
+    try{
     //Do AJAX REQUEST IF REQUIRED
     if(doAjaxRequest!=undefined)
         data=await doAjaxRequest();
@@ -101,8 +101,16 @@ async function PageTemplate(doAjaxRequest,doRenderPage,doRegisterListener,doHook
     //IF ADDITIONAL HOOKS ARE THERE, DO IT
     if(doHook!=undefined)
         await doHook(data);
-
+    }
+    catch(E)
+    {
+        console.log(E);
+    }
+    finally
+    {
     //This event used in main.js to remove loader
+    console.log("Dispached Event");
     window.dispatchEvent(new CustomEvent('preloaderend'));
+    }
     
 }
