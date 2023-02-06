@@ -100,6 +100,6 @@ async function PageTemplate(doAjaxRequest,doRenderPage,doRegisterListener,doHook
 
     //IF ADDITIONAL HOOKS ARE THERE, DO IT
     if(doHook!=undefined)
-        await doHook();
+        await doHook(data);
     
 }

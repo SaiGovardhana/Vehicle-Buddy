@@ -118,10 +118,16 @@ async function doRender(data)
 async function doRegisterListener(data)
 {
     $("#submitVehicle").on('click',submitChange);
+    
+
+}
+async function doHook(data)
+{   
+    console.log("IN HOOK")
     let vehicle=data.data;
     autoCompleteCar(vehicle.fullmodel);
     autoCompleteLocation(vehicle.location);
-
 }
-PageTemplate(doAjaxRequest,doRender,doRegisterListener);
+
+PageTemplate(doAjaxRequest,doRender,doRegisterListener,doHook);
 

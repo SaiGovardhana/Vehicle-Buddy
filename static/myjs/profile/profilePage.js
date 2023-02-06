@@ -139,7 +139,12 @@ async function doRegisterListener(data)
 {   $('#edit').on('click',toggleEditing);
     $('#save').on('click',submitChange);
     
-    autoCompleteLocation(data.data.location);
+  
 }
 
-PageTemplate(doAjaxRequest,doRender,doRegisterListener);
+async function doHook(data)
+{  console.log("IN HOOK")
+  autoCompleteLocation(data.data.location);
+}
+
+PageTemplate(doAjaxRequest,doRender,doRegisterListener,doHook);

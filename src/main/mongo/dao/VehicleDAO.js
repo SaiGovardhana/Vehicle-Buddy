@@ -115,11 +115,10 @@ async function updateVehicle(vehicle)
         brand=brand.trim();
         let id = new ObjectId(vehicle.id);
         let count = await collection.updateOne({_id:id},{$set:{location:location,vehicleprice:vehicleprice,pic:profilepic,model:modelName,brand:brand,fullmodel:model,city:city,state:state}});
-
-        if(count.modifiedCount == 1)
-            return true;
-        else    
+        if(count.matchedCount==0)
             return false;
+        
+        return true;
     }
     catch(E)
     {

@@ -95,9 +95,14 @@ async function submitChange()
 async function doRegisterListener(data)
 {
     $("#submitVehicle").on('click',submitChange);
+
+}
+async function doHook()
+{    console.log("IN HOOK")
     autoCompleteCar();
     autoCompleteLocation();
 
 }
-PageTemplate(undefined,undefined,doRegisterListener);
+
+PageTemplate(undefined,undefined,doRegisterListener,doHook);
 
