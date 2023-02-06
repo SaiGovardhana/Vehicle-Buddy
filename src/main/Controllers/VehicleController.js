@@ -1,4 +1,4 @@
-const { addVehicle, getVehicles } = require("../mongo/dao/VehicleDAO");
+const { addVehicle, getVehicles, getVehicle } = require("../mongo/dao/VehicleDAO");
 
 
 
@@ -92,4 +92,23 @@ async function getSellerVehicleEndpoint(req,res)
     res.json(result);
 }
 
-module.exports={addVehicleEndpoint,getVehiclesEndpoint,getSellerVehicleEndpoint};
+async function getVehicleEndpoint(req,res){
+    let result = {}
+    try{
+        let data = await getVehicle(req.query.id);
+        if(data == null){
+            result.success = false;
+        }
+        else{
+            result.data = data;
+            result.success = true;
+        }
+    }
+    catch(E){
+        console.log(E);
+        result.success = false;
+    }
+    res.json(result);
+}
+
+module.exports={addVehicleEndpoint,getVehiclesEndpoint,getSellerVehicleEndpoint,getVehicleEndpoint};

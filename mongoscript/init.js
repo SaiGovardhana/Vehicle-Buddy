@@ -1,5 +1,5 @@
 const fs=require('fs');
-
+//db=connect('mongodb+srv://govardhan:12345@myatlasclusteredu.j0ekrwe.mongodb.net/?retryWrites=true&w=majority')
 let landingPageCards=[
             {
                 role:"default",

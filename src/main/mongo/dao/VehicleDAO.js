@@ -1,4 +1,4 @@
-const {MongoClient}=require('mongodb');
+const {MongoClient, ObjectId}=require('mongodb');
 
 async function addVehicle(vehicle,sellermail)
 {
@@ -66,4 +66,32 @@ async function getVehicles(email)
 
 }
 
-module.exports={addVehicle,getVehicles};
+
+async function getVehicle(id)
+{
+    let client=new MongoClient(process.env.MONGO_URL);
+    try
+    {   await client.connect();
+        //await client.connect();
+        
+        let collection=client.db('vehicle_buddy').collection('vehicles');
+        console.log(id,id.length)
+        if(id == undefined|| id.length!=24)
+            return null;
+        let objectId=new ObjectId(id);
+        let cursor= await collection.findOne({_id:objectId});
+        return cursor;
+    }
+    catch(E)
+    {
+        console.log(E);
+        //client.close();
+        return null;
+    }
+    finally
+    {
+        await client.close();
+    }
+
+}
+module.exports={addVehicle,getVehicles,getVehicle};
