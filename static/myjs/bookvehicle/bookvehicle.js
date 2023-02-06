@@ -4,19 +4,20 @@ async function renderVehicle(vehicle){
         
         <div class="container-fluid justify-content-center col-md-4 col-8 ">
           <div class="row justify-content-center ">
-          <p class="mt-4 h2">${vehicle["fullmodel"]}</p>
+          <u> <p class="mt-4 h2 text-center text-primary">${vehicle["fullmodel"]}</p> </u>
            <img  src="${vehicle.pic}" alt="">
         </div>
         </div>
 
-        <div class="mt-5 container-fluid col-8   ">
-          <div class="row justify-content-center">
+        <div class="mt-4 container-fluid col-8   ">
+          <u> <h3 class="h3 text-center text-primary">INFO</h3> </u>
+          <div class="row justify-content-center text-center">
             <p class=" h4 ">Location</p>
-            <div class="icon h5 flex-shrink-0"><i class="fa-solid me-2 fa-location-dot"></i>${vehicle["location"]}</div>
+            <div class="text-primary icon h5 flex-shrink-0"><i class="fa-solid me-2 fa-location-dot"></i>${vehicle["location"]}</div>
             <p class="mt-4 h4">Price:</p>
-            <div class="icon h5 flex-shrink-0"><i class="fa-solid me-2 fa-inr"></i>${vehicle["vehicleprice"]} / Per day</div>
+            <div class="text-primary icon h5 flex-shrink-0"><i class="fa-solid me-2 fa-inr"></i>${vehicle["vehicleprice"]} / Per day</div>
             <p class="mt-4 h4">Seller</p>
-            <div class="icon h5 flex-shrink-0"><i class="fa-solid me-2 fa-envelope"></i>${vehicle["selleremail"]}</div>
+            <div class="text-primary icon h5 flex-shrink-0"><i class="fa-solid me-2 fa-envelope"></i>${vehicle["selleremail"]}</div>
           </div>
         </div>
 

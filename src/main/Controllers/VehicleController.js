@@ -1,4 +1,4 @@
-const { addVehicle, getVehicles, getVehicle } = require("../mongo/dao/VehicleDAO");
+const { addVehicle, getVehicles, getVehicle, updateVehicle } = require("../mongo/dao/VehicleDAO");
 
 
 
@@ -111,4 +111,48 @@ async function getVehicleEndpoint(req,res){
     res.json(result);
 }
 
-module.exports={addVehicleEndpoint,getVehiclesEndpoint,getSellerVehicleEndpoint,getVehicleEndpoint};
+async function updateVehicleEndpoint(req,res)
+{   let result={};
+    try
+    {   //Must be implemented in a middler ware
+        if(res.locals.user == undefined || res.locals.user.role!='seller')
+        {
+                result.success=false;
+                result.message="Authorization Failed";
+        }
+        else
+        {
+            
+            let {vehicleprice,model,location}=req.body;
+            if(vehicleprice==undefined||model==undefined||location==undefined)
+                {
+                    result.success=false;
+                    result.message="Some fields are missing";
+
+                }
+            else
+            {
+                let success=await updateVehicle(req.body)
+                if(success)
+                {
+                    result.success=true;
+                    result.message="Successfully updated vehicle.";
+                }
+                else
+                {
+                    result.success=false;
+                    result.message="Couldn't update vehicle";
+                }
+            }
+        }
+    }
+    catch(E){
+        result.success=false;
+        console.log(E);
+        result.message="Couldn't update vehicle";
+
+    }
+    res.json(result);
+}
+
+module.exports={addVehicleEndpoint,getVehiclesEndpoint,getSellerVehicleEndpoint,getVehicleEndpoint,updateVehicleEndpoint};
