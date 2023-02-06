@@ -1,4 +1,53 @@
+async function alerting(data)
+{   
+   let {profilepic,email,name,dob,location}=data;
+   Swal.fire({
+        title:"Loading",
+        showConfirmButton:false
+        ,
+        showLoaderOnConfirm: true,
+        preConfirm:  () => {
+          return  $.ajax({method:'PUT',url:'/user/',data:JSON.stringify({profilepic:profilepic,email:email,name:name,dob:dob,location:location}),contentType:'application/json'}).then((response)=>{
+            
+              let respone=response
+              if(respone.success)
+              {
+                Swal.fire({
+                  icon: 'success',
+                  title: respone.message,
+                  
+                  showConfirmButton: false, 
+                  allowOutsideClick: false, 
+                  timer:5200
+                  
+                });
+                setTimeout(()=>window.location.replace('/profile.html'),2000);
+                return ;
+              }
+            else
+            {
+              Swal.fire({
+                icon: 'error',
+                
+                title: respone.message,
+        
+                
+              });
+            }
 
+           }).
+          catch(e=>
+            {             console.log(e);
+              Swal.fire({
+                icon: 'error',
+                title: "Seems there is an error",
+                text: "Internal error/Problem with the Network"
+                
+              });;});;},});
+      setTimeout(()=>Swal.clickConfirm(),5);
+ 
+       
+}
 async function doAjaxRequest()
 {
     let data=await $.ajax({method:'GET',url:'/user/auth/loggedin'});
@@ -15,51 +64,7 @@ async function submitChange()
     let dob=$('#dob').val();
     let location=$("#autocompletestate").val();
     let profilepic=$('#profile').attr('src');
-    try
-    {
-        let response=await $.ajax({method:'PUT',url:'/user/',data:JSON.stringify({profilepic:profilepic,email:email,name:name,dob:dob,location:location}),contentType:'application/json'})
-        
-        if(response.success)
-        {
-          Swal.fire({
-            icon: 'success',
-            title: response.message,
-            showConfirmButton: false, 
-            allowOutsideClick: false, 
-            timer:2200
-            
-          });
-          setTimeout(()=>window.location.replace('/'),2000);
-          return;
-        }
-      else
-      {
-        Swal.fire({
-          icon:'error',
-          
-          title: response.message,
-          showConfirmButton: false, 
-          allowOutsideClick: false, 
-          timer:2200
-  
-          
-        });
-    }}
-    catch(E)
-    {
-        console.log(E);
-        Swal.fire({
-            icon:'error',
-            
-            title: "A fatal has occured",
-            showConfirmButton: false, 
-            allowOutsideClick: false, 
-            timer:2200
-    
-            
-          });
-
-    }
+    alerting({profilepic:profilepic,email:email,name:name,dob:dob,location:location});
     
 }
 async function doRender(data)

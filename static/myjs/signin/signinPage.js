@@ -1,3 +1,63 @@
+async function alerting(data)
+{   
+   
+   Swal.fire({
+        title:"Loading",
+        showConfirmButton:false
+        ,
+        showLoaderOnConfirm: true,
+        preConfirm:  () => {
+          return $.ajax({method:'POST',url:'/user/auth/login',contentType:'application/json',data:JSON.stringify({email:data.email,password:data.password})}).then((response)=>
+            {
+            
+              let respone=response
+              if(response.success)
+              {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Yahooo!!!',
+                  text: response.message,
+                  showConfirmButton: false, 
+                  allowOutsideClick: false, 
+                  timer:5000
+                  
+                });
+                setTimeout(()=>window.location.replace('/'),2000);
+                return;
+              }
+                else
+                { console.log(respone.message)
+                  Swal.fire({
+                    icon: respone.message.indexOf("find")!=-1? 'question':'error',
+                    title:  respone.message.indexOf("find")!=-1? "Do you have an account bro?":"Seems like you forgot the password",
+                    text: respone.message,
+            
+                    
+                  });
+
+
+                }
+
+              
+
+                
+        
+            }
+
+
+          ) .
+          catch(e=>
+            {             console.log(e);
+              Swal.fire({
+                icon: 'error',
+                title: "Seems there is an error",
+                text: "Internal error/Problem with the Network"
+                
+              });;});;},});
+      setTimeout(()=>Swal.clickConfirm(),5);
+ 
+       
+}
 //doAjaxRequest ->Not required for page currently
 //doRenderPage ->Not required for page currently.
 function validateEmail(mail) 
@@ -36,47 +96,9 @@ async function buttonClicked(e)
           });
 
     }
-    try{
-    //Send request for authentication for server.
-    let respone=await $.ajax({method:'POST',url:'/user/auth/login',contentType:'application/json',data:JSON.stringify({email:email,password:password})});
-    
-    //Process response
-    if(respone.success)
-      {
-        Swal.fire({
-          icon: 'success',
-          title: 'Yahooo!!!',
-          text: respone.message,
-          showConfirmButton: false, 
-          allowOutsideClick: false, 
-          timer:2200
-          
-        });
-        setTimeout(()=>window.location.replace('/'),2000);
-        return;
-      }
-    else
-    {
-      Swal.fire({
-        icon: respone.message.indexOf("Find")!=-1? 'question':'error',
-        title:  respone.message.indexOf("Find")!=-1? "Do you have an account bro?":"Seems like you forgot the password",
-        text: respone.message,
 
-        
-      });
-      return ;
-    }
-    }
-    catch(E)
-    {
-      console.log(E);
-      Swal.fire({
-        icon: 'error',
-        title: "Seems there is an error",
-        text: "Internal error/Problem with the Network"
-        
-      });
-    }
+    alerting({email:email,password:password});
+ 
 
 }
 async function  doRegisterListener()

@@ -1,3 +1,53 @@
+async function alerting(data)
+{   
+   let {role,email,name,password}=data;
+   Swal.fire({
+        title:"Loading",
+        showConfirmButton:false
+        ,
+        showLoaderOnConfirm: true,
+        preConfirm:  () => {
+          return $.ajax({method:'POST',url:'/user/',contentType:'application/json',data:JSON.stringify({role:role,email:email,name:name,password:password})}).then((response)=>{
+            
+              let respone=response
+              if(respone.success)
+              {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Yahooo!!!',
+                  text: respone.message,
+                  showConfirmButton: false, 
+                  allowOutsideClick: false, 
+                  timer:5200
+                  
+                });
+                setTimeout(()=>window.location.replace('/'),2000);
+                return ;
+              }
+            else
+            {
+              Swal.fire({
+                icon: 'error',
+                title:  "Oops, seems we got a problem.",
+                text: respone.message,
+        
+                
+              });
+            }
+
+           }).
+          catch(e=>
+            {             console.log(e);
+              Swal.fire({
+                icon: 'error',
+                title: "Seems there is an error",
+                text: "Internal error/Problem with the Network"
+                
+              });;});;},});
+      setTimeout(()=>Swal.clickConfirm(),5);
+ 
+       
+}
 //This page doesn't have doAjax
 //This page doesn't have doRender
 function validateEmail(mail) 
@@ -16,6 +66,7 @@ async function buttonClicked(e)
     let password=$("#password").val();
     let name=$("#name").val();
     let repassword=$("#repassword").val();
+    let role=$("#role").val();
     console.log(name);
     if(!validateEmail(email))
     {
@@ -49,48 +100,8 @@ async function buttonClicked(e)
           });
           return;
     }
-    let role=$("#role").val();
-    try{
-    //Send request for authentication for server.
-    let respone=await $.ajax({method:'POST',url:'/user/',contentType:'application/json',data:JSON.stringify({role:role,email:email,name:name,password:password})});
     
-    //Process response
-    if(respone.success)
-      {
-        Swal.fire({
-          icon: 'success',
-          title: 'Yahooo!!!',
-          text: respone.message,
-          showConfirmButton: false, 
-          allowOutsideClick: false, 
-          timer:2200
-          
-        });
-        setTimeout(()=>window.location.replace('/'),2000);
-        return ;
-      }
-    else
-    {
-      Swal.fire({
-        icon: 'error',
-        title:  "Oops, seems we got a problem.",
-        text: respone.message,
-
-        
-      });
-    }
-    }
-    catch(E)
-    {
-      console.log(E);
-      Swal.fire({
-        icon: 'error',
-        title: "Seems there is an error",
-        text: "Internal error/Problem with the Network"
-        
-      });
-    }
-
+   alerting({email:email,role:role,name:name,password:password});
 }
 async function  doRegisterListener()
 {
