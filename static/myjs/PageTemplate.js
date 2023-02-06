@@ -101,5 +101,8 @@ async function PageTemplate(doAjaxRequest,doRenderPage,doRegisterListener,doHook
     //IF ADDITIONAL HOOKS ARE THERE, DO IT
     if(doHook!=undefined)
         await doHook(data);
+
+    //This event used in main.js to remove loader
+    window.dispatchEvent(new CustomEvent('preloaderend'));
     
 }
