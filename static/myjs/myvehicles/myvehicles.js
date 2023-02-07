@@ -7,7 +7,7 @@ async function doAjaxRequest()
 
 async function renderCard(curCard)
 {
-    let cur=` <div style="transform:scale(0.8)" class="mt-1 col-lg-4 col-md-6 col-8 mx-md-0 m-auto" data-aos="fade-up" data-aos-delay="100">
+    let cur=` <div style="transform:scale(0.8)" class="mt-1 col-lg-4 col-md-6 col-8 mx-md-0 mx-auto" data-aos="fade-up" data-aos-delay="100">
     <div class="mycard card">
       <div class="card-img border-bottom border-5 border-primary ">
         <img  src="${curCard["pic"]}" alt=""  class="card-img-top">
@@ -17,7 +17,7 @@ async function renderCard(curCard)
       <h6 class="h5 text-center mx-3 my-2 fw-bolder">Location:<br><div class="icon flex-shrink-0 text-primary"><i class="fa-solid me-2 fa-location-dot"></i>${curCard["location"]}</div></h6>
       <h6 class="h5 text-center mx-3 my-2 fw-bolder">Seller:<div class="icon flex-shrink-0 text-primary"><i class="fa-solid me-2 fa-envelope"></i>${curCard["selleremail"]}</div></h6>
       
-      <a href="/updateVehicle.html#${curCard["_id"]}" class="btn btn-outline-primary align-self-center mb-3 col-6">Update Vehicle</a>
+      <a href="/updateVehicle.html#${curCard["_id"]}" class="mt-auto btn btn-outline-primary align-self-center mb-3 col-6">Update Vehicle</a>
     </div>
    
   </div>`

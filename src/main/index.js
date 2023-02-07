@@ -1,4 +1,6 @@
 require('dotenv').config({path:'environment.env'});
+const { MongoClient } = require('mongodb');
+globalThis.mongoClient=new MongoClient(process.env.MONGO_URL);
 const express = require("express");
 const cookieParser=require('cookie-parser')
 const { userRouter } = require("./routes/UserRouter");
@@ -7,10 +9,9 @@ const { autoCompleteRouter } = require('./routes/AutoCompleteRouter');
 const { injectUser } = require('./Controllers/middleware/InjectUser');
 const { vehicleRouter } = require('./routes/VehicleRouter');
 const { bookingRouter } = require('./routes/BookingRouter');
-const { MongoClient } = require('mongodb');
 
 //Added mongoclient
-globalThis.mongoClient=new MongoClient(process.env.MONGO_URL);
+
 
 let app=express();
 app.set('case sensitive routing', false);
