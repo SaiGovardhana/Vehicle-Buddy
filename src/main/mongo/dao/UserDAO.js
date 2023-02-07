@@ -4,10 +4,10 @@ const {MongoClient}=require('mongodb');
 
 //Function to add user to database
 async function addUser(user)
-{   let client=new MongoClient(process.env.MONGO_URL);
+{    let client=globalThis.mongoClient;
     try
-    {   await client.connect();
-        //await client.connect();
+    {  // await client.connect();
+        
         let collection=client.db('vehicle_buddy').collection('users');
         await collection.insertOne({"email":user.email.toLowerCase(),"name":user.name,"password":user.password,"role":user.role});
         //await client.close();
@@ -21,17 +21,17 @@ async function addUser(user)
     }
     finally
     {
-        await client.close();
+        //await client.close();
     }
 
 }
 
 //Function to updateUser
 async function updateUser(email,user)
-{   let client=new MongoClient(process.env.MONGO_URL);
+{    let client=globalThis.mongoClient;
     try
     {   //Existing editable properties
-        await client.connect();
+       // await client.connect();
         let validProperties=['name','password','location','dob','profilepic'];
         let filteredUser={};
         
@@ -61,16 +61,16 @@ async function updateUser(email,user)
     }
     finally
     {
-        await client.close();
+      //  await client.close();
     }
 
 }
 
 async function containsUser(email)
-{   let client=new MongoClient(process.env.MONGO_URL);
+{    let client=globalThis.mongoClient;
     try
     {
-        await client.connect();
+       // await client.connect();
         let collection=client.db('vehicle_buddy').collection('users');
         let result=collection.find({"email":email.toLowerCase()});
         let containsUser=false;
@@ -93,17 +93,17 @@ async function containsUser(email)
     }
     finally
     {
-        await client.close();
+      //  await client.close();
     }
 
 }
 
 async function getUser(email)
 {
-    let client=new MongoClient(process.env.MONGO_URL);
+    let client=globalThis.mongoClient;
     try
     {   
-       await client.connect();
+       //await client.connect();
         let collection=client.db('vehicle_buddy').collection('users');
         let result=await collection.findOne({"email":email.toLowerCase()});
         
@@ -118,7 +118,7 @@ async function getUser(email)
     }
     finally
     {
-        await client.close();
+        //await client.close();
     }
 
 

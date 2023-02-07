@@ -2,9 +2,9 @@ const {MongoClient, ObjectId}=require('mongodb');
 
 async function addVehicle(vehicle,sellermail)
 {
-    let client=new MongoClient(process.env.MONGO_URL);
+    let client=globalThis.mongoClient;//new MongoClient(process.env.MONGO_URL);
     try
-    {   await client.connect();
+    {   
         //await client.connect();
         let collection=client.db('vehicle_buddy').collection('vehicles');
         let {location,model,vehicleprice,profilepic}=vehicle;
@@ -21,12 +21,12 @@ async function addVehicle(vehicle,sellermail)
     catch(E)
     {
         console.log(E);
-        //client.close();
+       
         return false;
     }
     finally
     {
-        await client.close();
+        //await client.close();
     }
 
 
@@ -34,10 +34,9 @@ async function addVehicle(vehicle,sellermail)
 
 async function getVehicles(email)
 {
-    let client=new MongoClient(process.env.MONGO_URL);
+    let client=globalThis.mongoClient;
     try
-    {   await client.connect();
-        //await client.connect();
+    {           //await client.connect();
 
         let collection=client.db('vehicle_buddy').collection('vehicles');
         let query={};
@@ -56,12 +55,12 @@ async function getVehicles(email)
     catch(E)
     {
         console.log(E);
-        //client.close();
+        
         return [];
     }
     finally
     {
-        await client.close();
+       // await client.close();
     }
 
 }
@@ -69,9 +68,9 @@ async function getVehicles(email)
 
 async function getVehicle(id)
 {
-    let client=new MongoClient(process.env.MONGO_URL);
+    let client=globalThis.mongoClient;
     try
-    {   await client.connect();
+    {   
         //await client.connect();
         
         let collection=client.db('vehicle_buddy').collection('vehicles');
@@ -97,12 +96,12 @@ async function getVehicle(id)
     catch(E)
     {
         console.log(E);
-        //client.close();
+        
         return null;
     }
     finally
     {
-        await client.close();
+        //await client.close();
     }
 
 }
@@ -111,9 +110,9 @@ async function getVehicle(id)
 
 async function updateVehicle(vehicle)
 {
-    let client=new MongoClient(process.env.MONGO_URL);
+    let client=globalThis.mongoClient;;
     try
-    {   await client.connect();
+    {   
         //await client.connect();
         let collection=client.db('vehicle_buddy').collection('vehicles');
         let {location,model,vehicleprice,profilepic}=vehicle;
@@ -135,12 +134,12 @@ async function updateVehicle(vehicle)
     catch(E)
     {
         console.log(E);
-        //client.close();
+      
         return false;
     }
     finally
     {
-        await client.close();
+        //await client.close();
     }
 
 

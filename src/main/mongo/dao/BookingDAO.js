@@ -3,7 +3,7 @@ const { getVehicle } = require("./VehicleDAO");
 
 
 async function addBooking(bookingDetails)
-{   let client=new MongoClient(process.env.MONGO_URL);
+{    let client=globalThis.mongoClient;
     //Retrieve Vehicle Details
     try{
         let vehicleid = bookingDetails.vehicleid;
@@ -13,9 +13,11 @@ async function addBooking(bookingDetails)
         if(vehicle==null)
             return false;
             console.log("HERE1")
-        await client.connect();
+        
+        //await client.connect();
+        
         let {selleremail,vehicleprice}=vehicle;
-        console.log("HERE2")
+        
         let collection = client.db("vehicle_buddy").collection("bookings");
         let bookingdate=new Date(bookingDetails.date);
         
@@ -35,16 +37,16 @@ async function addBooking(bookingDetails)
             return false;
         }
         finally{
-            await client.close();
+          //  await client.close();
         }
 }
 
 async function getCustomersBooking(email)
 {
-    let client=new MongoClient(process.env.MONGO_URL);
+    let client=globalThis.mongoClient;
     //Retrieve Vehicle Details
     try{
-       await client.connect();
+       //await client.connect();
        let collection=client.db("vehicle_buddy").collection("bookings");
        let bookings=[];
        if(email==undefined)
@@ -63,16 +65,16 @@ async function getCustomersBooking(email)
             return [];
         }
         finally{
-            await client.close();
+           // await client.close();
         }
 }
 
 async function getSellersBooking(email)
 {
-    let client=new MongoClient(process.env.MONGO_URL);
+    let client=globalThis.mongoClient;
     //Retrieve Vehicle Details
     try{
-       await client.connect();
+       //await client.connect();
        let collection=client.db("vehicle_buddy").collection("bookings");
        let bookings=[];
        if(email==undefined)
@@ -91,7 +93,7 @@ async function getSellersBooking(email)
             return [];
         }
         finally{
-            await client.close();
+            //await client.close();
         }
 }
 

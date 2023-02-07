@@ -2,10 +2,10 @@ const {MongoClient}=require('mongodb');
 
 async function getStates(state)
 { 
-    let client=new MongoClient(process.env.MONGO_URL);
+    let client=globalThis.mongoClient;
     
     try{
-            await   client.connect();
+            //await   client.connect();
            
             let collection=client.db('vehicle_buddy').collection('autocomplete_states');
             let result=collection.aggregate([{$group:{_id:"$state"}},{$project:{_id:1}}]);
@@ -22,16 +22,16 @@ async function getStates(state)
     }
     finally
     {
-        await client.close();
+       // await client.close();
     }
     return null
 }
 
 async function getCities(state)
-{   let client=new MongoClient(process.env.MONGO_URL);
+{    let client=globalThis.mongoClient;
 
     try{
-        await client.connect();
+        //await client.connect();
        
         let collection=client.db('vehicle_buddy').collection('autocomplete_states');
         let cursor=collection.find({state:{'$regex' : `^${state}$`, '$options' : 'i'}},{projection:{_id:0,city:1}});
@@ -52,16 +52,16 @@ async function getCities(state)
     }
     finally
     {
-        client.close();
+       // client.close();
     }
     return null
 }
 
 async function getLocations(search)
-{   let client=new MongoClient(process.env.MONGO_URL);
+{    let client=globalThis.mongoClient;
     try{
         
-        await client.connect();
+        //await client.connect();
         let collection=client.db('vehicle_buddy').collection('autocomplete_states');
         let result=collection.find({location:{'$regex' : `${search}`, '$options' : 'i'}},{projection:{_id:0,location:1}});
         let locations=[]
@@ -78,16 +78,16 @@ async function getLocations(search)
     }
     finally
     {
-        await client.close();
+        //await client.close();
     }
     return null
 }
 
 async function getCarTypes(search)
-{   let client=new MongoClient(process.env.MONGO_URL);
+{    let client=globalThis.mongoClient;
     try{
         
-        await client.connect();
+       // await client.connect();
         let collection=client.db('vehicle_buddy').collection('autocomplete_cars');
         let result=collection.find({name:{'$regex' : `${search}`, '$options' : 'i'}},{projection:{_id:0,name:1}});
         let cars=[]
@@ -104,7 +104,7 @@ async function getCarTypes(search)
     }
     finally
     {
-        await client.close();
+        //await client.close();
     }
     return null
 }

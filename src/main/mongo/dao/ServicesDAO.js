@@ -8,10 +8,10 @@ const {MongoClient}=require('mongodb');
 
 
 async function getIndexCards(role)
-{   let client=new MongoClient(process.env.MONGO_URL);
+{    let client=globalThis.mongoClient;
     try
     {
-        await client.connect();
+      //  await client.connect();
         let collection=client.db('vehicle_buddy').collection('index_cards');
 
         let result=await collection.findOne({role:role},{projection:{_id:0}});
@@ -30,7 +30,7 @@ async function getIndexCards(role)
     }
     finally
     {
-        await client.close();
+      //  await client.close();
     }
 
 
