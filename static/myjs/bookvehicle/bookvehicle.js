@@ -83,9 +83,9 @@ async function renderVehicle(vehicle){
 
       </div>
     <div class="container-fluid">
-      <div class="row justify-content-end">
-        <div id="booknow" class="btn btn-primary col-3 mx-3"> Book Now </div>
-        <input  id="bookdate" class="col-4 form-control-lg datepicker" placeholder="Book Date" data-date-format="dd/mm/yyyy">
+      <div class="row  justify-content-md-end justify-content-center ">
+        <div id="booknow" class="btn p-2 mt-auto m-0 align-self-center btn-outline-primary col-md-3 col-6 mx-3"><span class="h4"> Book Now</span> </div>
+        <input  id="bookdate" class="mt-3 align-self-center p-2 col-md-4 col-6 form-control-lg datepicker" placeholder="Book Date" data-date-format="dd/mm/yyyy">
       </div>
     </div>
   </div>`);

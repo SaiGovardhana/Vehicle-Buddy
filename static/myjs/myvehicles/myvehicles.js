@@ -16,7 +16,7 @@ async function renderCard(curCard)
       <h6 class="h5 text-center mx-3 my-2 fw-bolder">Price:<br><div class="icon flex-shrink-0  text-primary"><i class="fa-solid me-2 fa-inr"></i>${curCard["vehicleprice"]} / Per day</div></h6>
       <h6 class="h5 text-center mx-3 my-2 fw-bolder">Location:<br><div class="icon flex-shrink-0 text-primary"><i class="fa-solid me-2 fa-location-dot"></i>${curCard["location"]}</div></h6>
       <h6 class="h5 text-center mx-3 my-2 fw-bolder">Seller:<div class="icon flex-shrink-0 text-primary"><i class="fa-solid me-2 fa-envelope"></i>${curCard["selleremail"]}</div></h6>
-      
+      <a href="/getVehicleQR.html#${curCard["_id"]}" class="mt-auto btn btn-outline-primary align-self-center mb-3 col-6">Get Vehicle QR</a> 
       <a href="/updateVehicle.html#${curCard["_id"]}" class="mt-auto btn btn-outline-primary align-self-center mb-3 col-6">Update Vehicle</a>
     </div>
    
