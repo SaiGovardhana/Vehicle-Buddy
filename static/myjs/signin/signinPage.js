@@ -3,7 +3,9 @@ async function alerting(data)
    
    Swal.fire({
         title:"Loading",
-        showConfirmButton:false
+        showConfirmButton:false,
+        allowEscapeKey:false,
+        allowOutsideClick:false
         ,
         showLoaderOnConfirm: true,
         preConfirm:  () => {
