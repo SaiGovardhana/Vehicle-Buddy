@@ -29,7 +29,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap.min.css" integrity="sha512-BMbq2It2D3J17/C7aRklzOODG1IQ3+MHw3ifzBHMBwGO/0yUqYmsStgBjI0z5EYlaDEFnvYV7gNYdD3vFLRKsA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css"/>
 
   <!-- =======================================================
   * Template Name: Logis - v1.3.0
@@ -105,11 +105,14 @@
 
         </div>
 
-        <div id="servicecontainer" class="row gy-4">
-        <table id="table" class="m-2 table table-bordered">
-
-        </table>
-      </div>
+         <div id="servicecontainer" class="container-fluid row  justify-content-center">
+            <div class="row">
+            <table id="table" style="width: 100%"  class="stripe cell-border order-column  text-center">
+                <thead class="  bg-primary text-white  "></thead>
+                <tbody class="bg-white"></tbody>
+            </table>
+        </div>
+         </div>
     </section><!-- End Services Section -->
 
 
@@ -163,7 +166,8 @@
   <!-- Template Main JS File -->
   <script src="./assets/js/jquery.js"></script>
   <script src="./assets/js/sweetalert.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"  ></script>
+  <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="myjs/PageTemplate.js"></script>
   <script src="myjs/mybookings/mybookings.js"></script>
