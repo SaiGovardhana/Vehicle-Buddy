@@ -29,7 +29,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css"/>
 
   <!-- =======================================================
   * Template Name: Logis - v1.3.0
@@ -40,9 +40,8 @@
 </head>
 
 <body>
-
-   <!-- ======= Header ======= -->
-   <header id="header" class="header d-flex align-items-center fixed-top">
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
@@ -82,7 +81,7 @@
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>Your Vehicles</h2>
+              <h2>My Revenue</h2>
              
             </div>
           </div>
@@ -92,7 +91,7 @@
         <div class="container">
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li>Book Now</li>
+            <li>My Revenue</li>
           </ol>
         </div>
       </nav>
@@ -101,15 +100,19 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <span>Vehicles</span>
-          <h2>Vehicles</h2>
+          <span>Revenue</span>
+          <h2>Revenue</h2>
 
         </div>
 
-        <div id="servicecontainer" class="container-fluid row gy-4">
-   
-          
-      </div>
+         <div id="servicecontainer" class="container-fluid row ">
+            <div class="row overflow-auto " style="scrollbar-width: none;" >
+            <table id="table" style="width: 100%"  class="table-responsive   stripe cell-border order-column   text-center">
+                <thead class="  bg-primary text-white  "></thead>
+                <tbody class="bg-white"></tbody>
+            </table>
+        </div>
+         </div>
     </section><!-- End Services Section -->
 
 
@@ -163,9 +166,12 @@
   <!-- Template Main JS File -->
   <script src="./assets/js/jquery.js"></script>
   <script src="./assets/js/sweetalert.js"></script>
+  <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"  ></script>
+  <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="myjs/PageTemplate.js"></script>
-  <script src="myjs/booknow/booknow.js"></script>
+  <script src="myjs/myrevenue/myrevenue.js"></script>
+  
 
 </body>
 

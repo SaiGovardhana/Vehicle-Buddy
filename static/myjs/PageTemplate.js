@@ -47,7 +47,7 @@ async function doRenderNav()
 
 
             if(user.role=='seller')
-                $('ul').first().prepend('<li><a href="myvehicles.html">My Vehicles</a></li><li><a href="MyVehicles.html">My Revenue</a></li>');
+                $('ul').first().prepend('<li><a href="myvehicles.html">My Vehicles</a></li><li><a href="myrevenue.html">My Revenue</a></li>');
              else
                 if(user.role=='customer'||user.role==undefined)
                     $('ul').first().prepend('<li><a href="booknow.html">Book Now</a></li><li><a href="mybookings.html">My Bookings</a></li>');

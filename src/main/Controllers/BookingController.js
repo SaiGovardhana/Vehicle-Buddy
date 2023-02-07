@@ -1,4 +1,4 @@
-const { addBooking, getCustomersBooking } = require("../mongo/dao/BookingDAO");
+const { addBooking, getCustomersBooking, getSellersBooking } = require("../mongo/dao/BookingDAO");
 
 
 async function addBookingEndpoint(req,res)
@@ -95,4 +95,45 @@ async function getCustomerBookingsEndpoint(req,res)
 
 
 }
-module.exports={addBookingEndpoint,getCustomerBookingsEndpoint};
+
+async function getSellersBookingEndpoint(req,res)
+{
+
+    let result={data:[],success:false};
+
+    
+    try
+    {
+        if(res.locals.user==undefined)
+            {
+                result.data=[];
+                result.success=false;
+                
+            }
+        else
+            {  if(res.locals.user.role!="seller")
+               {
+                result.data=[];
+                result.success=false;
+                
+               }
+                else{
+
+                    let data= await getSellersBooking(res.locals.user.email);
+                    result.success=true;
+                    result.data=data;
+            }
+            }
+        
+    }
+    catch(E)
+    {
+        console.log(E);
+        result.success=false;
+        result.data=[]
+
+    }
+    res.json(result);
+
+}
+module.exports={addBookingEndpoint,getCustomerBookingsEndpoint,getSellersBookingEndpoint};

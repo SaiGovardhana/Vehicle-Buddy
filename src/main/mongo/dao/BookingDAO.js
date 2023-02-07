@@ -67,4 +67,32 @@ async function getCustomersBooking(email)
         }
 }
 
-module.exports = {addBooking,getCustomersBooking}
+async function getSellersBooking(email)
+{
+    let client=new MongoClient(process.env.MONGO_URL);
+    //Retrieve Vehicle Details
+    try{
+       await client.connect();
+       let collection=client.db("vehicle_buddy").collection("bookings");
+       let bookings=[];
+       if(email==undefined)
+        return [];
+       let cursor=collection.find({selleremail:email},{projection:{_id:0}});
+        
+       while(await cursor.hasNext())
+       {
+        let curElement=await cursor.next();
+        bookings.push(curElement);
+       }
+        return bookings;
+    }
+        catch(E){
+            console.log(E);
+            return [];
+        }
+        finally{
+            await client.close();
+        }
+}
+
+module.exports = {addBooking,getCustomersBooking,getSellersBooking}
