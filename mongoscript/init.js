@@ -111,3 +111,6 @@ statesCollection.createIndex({location:1});
 carsCollection.insertMany(autocomplete_cars);
 carsCollection.createIndex({brand:1,model:1});
 carsCollection.createIndex({name:1});
+
+let bookingCollection=curDb.getCollection("bookings");
+bookingCollection.createIndex({vehicleid:1,bookingdate:1},{unique:true});

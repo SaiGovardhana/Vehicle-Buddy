@@ -6,6 +6,7 @@ const { indexRouter } = require("./routes/indexPageRouter");
 const { autoCompleteRouter } = require('./routes/AutoCompleteRouter');
 const { injectUser } = require('./Controllers/middleware/InjectUser');
 const { vehicleRouter } = require('./routes/VehicleRouter');
+const { bookingRouter } = require('./routes/BookingRouter');
 
 let app=express();
 app.set('case sensitive routing', false);
@@ -17,4 +18,5 @@ app.use('/autocomplete',autoCompleteRouter);
 app.use('/user',userRouter);
 app.use('/index',indexRouter);
 app.use('/vehicle',vehicleRouter);
+app.use('/book',bookingRouter);
 app.listen(4292);

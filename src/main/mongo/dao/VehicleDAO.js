@@ -75,11 +75,23 @@ async function getVehicle(id)
         //await client.connect();
         
         let collection=client.db('vehicle_buddy').collection('vehicles');
-        console.log(id,id.length)
+        //console.log(id,id.length)
+        console.log("HERE",id);
         if(id == undefined|| id.length!=24)
             return null;
         let objectId=new ObjectId(id);
         let cursor= await collection.findOne({_id:objectId});
+        
+        //Retrieving the bookings of vehicle
+        let bookingCollection=client.db('vehicle_buddy').collection('bookings');
+        let bookings=[];
+        let bookingsCursor=bookingCollection.find({vehicleid:id},{projection:{date:{ $dateToString: { format: "%Y-%m-%d", date: "$bookingdate" } }}});
+        while(await bookingsCursor.hasNext())
+        {   
+            bookings.push((await bookingsCursor.next()).date);
+        }
+
+        cursor.bookings=bookings;
         return cursor;
     }
     catch(E)

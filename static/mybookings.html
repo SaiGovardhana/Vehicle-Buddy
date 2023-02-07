@@ -24,34 +24,22 @@
   <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   
+
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-    .disabled-date
-    {
-      color: white !important;
-      font-weight: bolder !important;
-      background-color: red !important;
-    }
-    .day
-    { 
-      font-weight: bolder;
-    }
-    .disabled,.new,.old
-    {
-      font-weight: lighter;
-    }
-  </style>
- 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap.min.css" integrity="sha512-BMbq2It2D3J17/C7aRklzOODG1IQ3+MHw3ifzBHMBwGO/0yUqYmsStgBjI0z5EYlaDEFnvYV7gNYdD3vFLRKsA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- =======================================================
+  * Template Name: Logis - v1.3.0
+  * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
 <body>
-
-  
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -85,29 +73,6 @@
 
     </div>
   </header><!-- End Header -->
-  <!-- End Header -->
-        <!--- Code for modal crop-->
-        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Crop the image</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="img-container">
-                  <img id="image" src="">
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="crop">Crop</button>
-              </div>
-            </div>
-          </div>
-        </div><!--Modal -->
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -116,25 +81,37 @@
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>Book Vehicle</h2>
+              <h2>Your Bookings</h2>
              
             </div>
           </div>
         </div>
       </div>
- 
-
+      <nav>
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Your Bookings</li>
+          </ol>
+        </div>
+      </nav>
     </div><!-- End Breadcrumbs -->
+    <section id="service" class="services pt-0">
+      <div class="container" data-aos="fade-up">
 
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-        <h1 class="h1 text-center">Book Vehicle</h1>
-      <div class="container" id="vehicleContainer" data-aos="fade-up">
+        <div class="section-header">
+          <span>Bookings</span>
+          <h2>Bookings</h2>
 
+        </div>
 
+        <div id="servicecontainer" class="row gy-4">
+        <table id="table" class="m-2 table table-bordered">
 
+        </table>
       </div>
-    </section><!-- End Contact Section -->
+    </section><!-- End Services Section -->
+
 
   </main><!-- End #main -->
 
@@ -171,7 +148,7 @@
 
   </footer>
 
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class=" scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <div id="preloader"></div>
 
@@ -184,17 +161,14 @@
   
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
   <script src="./assets/js/jquery.js"></script>
   <script src="./assets/js/sweetalert.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-   
-  <script src="./myjs/PageTemplate.js"></script>
-  <script src="./myjs/bookvehicle/bookvehicle.js"></script>
-
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="myjs/PageTemplate.js"></script>
+  <script src="myjs/mybookings/mybookings.js"></script>
   
+
 </body>
 
 </html>

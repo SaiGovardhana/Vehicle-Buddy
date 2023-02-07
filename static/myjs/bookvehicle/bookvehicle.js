@@ -1,3 +1,62 @@
+async function alerting(data)
+{   
+   let {vehicleId,date}=data;
+   Swal.fire({
+        title:"Loading",
+        allowEscapeKey:false,
+        showConfirmButton:false,
+        allowOutsideClick:false
+        ,
+        showLoaderOnConfirm: true,
+        preConfirm:  () => {
+          return  $.ajax({method:'POST',url:'/book/bookvehicle',data:JSON.stringify({vehicleid:vehicleId,date:date}),contentType:'application/json'}).then((response)=>{
+            
+              let respone=response
+              if(respone.success)
+              {
+                Swal.fire({
+                  icon: 'success',
+                  title: respone.message,
+                  
+                  showConfirmButton: false, 
+                  allowOutsideClick: false, 
+                  timer:5200
+                  
+                });
+                setTimeout(()=>window.location.replace('/'),2000);
+                return ;
+              }
+            else
+            {
+              Swal.fire({
+                icon: 'error',
+                
+                title: respone.message,
+        
+                
+              });
+            }
+
+           }).
+          catch(e=>
+            {             console.log(e);
+              Swal.fire({
+                icon: 'error',
+                title: "Seems there is an error",
+                text: "Internal error/Problem with the Network"
+                
+              });;});;},});
+      setTimeout(()=>Swal.clickConfirm(),5);
+ 
+       
+}
+async function submit()
+{
+  let date=$("#bookdate").val();
+  let vehicleId=window.location.hash.substring(1);
+  alerting({date:date,vehicleId:vehicleId});
+
+}
 async function renderVehicle(vehicle){
     return (`<div id="display-container container-fluid" class="row gy-4 mt-4">
       <div class="row justify-content-around">
@@ -23,14 +82,19 @@ async function renderVehicle(vehicle){
 
 
       </div>
-
-    
+    <div class="container-fluid">
+      <div class="row justify-content-end">
+        <div id="booknow" class="btn btn-primary col-3 mx-3"> Book Now </div>
+        <input  id="bookdate" class="col-4 form-control-lg datepicker" placeholder="Book Date" data-date-format="dd/mm/yyyy">
+      </div>
+    </div>
   </div>`);
 }
 async function doAjaxRender()
 {   
     let id = window.location.hash.substring(1);
     let data = await $.ajax({url:"/vehicle/getVehicle?id="+id,method:"GET"});
+    console.log("MYDATA",data);
     return data;
 }
 
@@ -44,4 +108,22 @@ async function doRender(data){
     }
 }
 
-PageTemplate(doAjaxRender,doRender);
+
+async function doRegisterListener()
+{
+  $("#booknow").on('click',submit);
+}
+async function doHook(data)
+{   
+  let disabledDays = data.data.bookings;
+  console.log(disabledDays)
+  $('.datepicker').datepicker({
+    startDate: '0d',
+    format:"yyyy-mm-dd",
+    endDate:"+1m",
+    datesDisabled:disabledDays
+  });
+}
+
+
+PageTemplate(doAjaxRender,doRender,doRegisterListener,doHook);
