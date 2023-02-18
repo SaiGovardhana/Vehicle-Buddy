@@ -1,7 +1,15 @@
 
 const {MongoClient}=require('mongodb');
 
+async function saveImage(email,buffer)
+{
+    
+}
 
+async function getUserImage(email)
+{
+
+}
 //Function to add user to database
 async function addUser(user)
 {    let client=globalThis.mongoClient;
