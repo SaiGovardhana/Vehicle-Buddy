@@ -14,10 +14,11 @@ const { bookingRouter } = require('./routes/BookingRouter');
 
 
 let app=express();
+
 app.set('case sensitive routing', false);
 app.use(express.json({limit:"10mb"}));
 app.use(cookieParser());
-app.use(express.static('static'));
+app.use("/images",express.static('static/images'));
 app.use(injectUser);
 app.use('/api/autocomplete',autoCompleteRouter);
 app.use('/api/user',userRouter);

@@ -44,14 +44,18 @@ async function addVehicleEndpoint(req,res)
     }
     res.json(result);
 }
-
+/**
+ * 
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+ */
 async function getVehiclesEndpoint(req,res)
 {
     let result={};
     try
     {   
 
-        let data=await getVehicles();
+        let data=await getVehicles(undefined,req.query.location,req.query.model);
         result.data=data;
         result.success=true;
     }
@@ -78,7 +82,7 @@ async function getSellerVehicleEndpoint(req,res)
             result.success=false;
         }
         else{
-            let data=await getVehicles(email);
+            let data=await getVehicles(email,req.query.location,req.query.model);
             result.data=data;
             result.success=true;
         }

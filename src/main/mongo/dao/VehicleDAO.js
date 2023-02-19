@@ -1,3 +1,4 @@
+const ImageDataURI = require('image-data-uri');
 const {MongoClient, ObjectId}=require('mongodb');
 
 async function addVehicle(vehicle,sellermail)
@@ -10,11 +11,18 @@ async function addVehicle(vehicle,sellermail)
         let {location,model,vehicleprice,profilepic}=vehicle;
         let [modelName,brand]=model.split(',');
         let [city,state]=location.split(',');
+        let profilepicFile=profilepic;
+        if(profilepic!=null&&profilepic!=undefined&&profilepic.startsWith("data"))
+            {
+                profilepicFile="/images/"+Date.now()+".png";
+                await ImageDataURI.outputFile(profilepic,"static"+profilepicFile);
+            }
+        console.log(profilepicFile)
         city=city.trim();
         state=state.trim();
         modelName=modelName.trim();
         brand=brand.trim();
-        await collection.insertOne({"selleremail":sellermail,location:location,vehicleprice:vehicleprice,pic:profilepic,model:modelName,brand:brand,fullmodel:model,city:city,state:state});
+        await collection.insertOne({"selleremail":sellermail,location:location,vehicleprice:vehicleprice,pic:profilepicFile,model:modelName,brand:brand,fullmodel:model,city:city,state:state});
     
         return true;
     }
@@ -32,7 +40,7 @@ async function addVehicle(vehicle,sellermail)
 
 }
 
-async function getVehicles(email)
+async function getVehicles(email,location,model)
 {
     let client=globalThis.mongoClient;
     try
@@ -43,7 +51,10 @@ async function getVehicles(email)
         
         if(email!=undefined)
             query["selleremail"]=email;
-
+        location=location?location:"";
+        model=model?model:"";
+        query["location"]={$regex:`${location}`,$options:"i"};
+        query["fullmodel"]={$regex:`${model}`,$options:"i"};
         let cursor= collection.find(query);
         let results=[];
         while(await cursor.hasNext())
