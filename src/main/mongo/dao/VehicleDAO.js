@@ -135,8 +135,15 @@ async function updateVehicle(vehicle)
         state=state.trim();
         modelName=modelName.trim();
         brand=brand.trim();
+        let profilepicFile=profilepic;
+        if(profilepic!=null&&profilepic!=undefined&&profilepic.startsWith("data"))
+            {
+                profilepicFile="/images/"+Date.now()+".png";
+                await ImageDataURI.outputFile(profilepic,"static"+profilepicFile);
+            }
+        
         let id = new ObjectId(vehicle.id);
-        let count = await collection.updateOne({_id:id},{$set:{location:location,vehicleprice:vehicleprice,pic:profilepic,model:modelName,brand:brand,fullmodel:model,city:city,state:state}});
+        let count = await collection.updateOne({_id:id},{$set:{location:location,vehicleprice:vehicleprice,pic:profilepicFile,model:modelName,brand:brand,fullmodel:model,city:city,state:state}});
         if(count.matchedCount==0)
             return false;
         

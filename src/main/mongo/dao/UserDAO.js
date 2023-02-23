@@ -1,15 +1,8 @@
 
+const ImageDataURI = require('image-data-uri');
 const {MongoClient}=require('mongodb');
 
-async function saveImage(email,buffer)
-{
-    
-}
 
-async function getUserImage(email)
-{
-
-}
 //Function to add user to database
 async function addUser(user)
 {    let client=globalThis.mongoClient;
@@ -34,13 +27,37 @@ async function addUser(user)
 
 }
 
+async function addGoogleUser(user)
+{    let client=globalThis.mongoClient;
+    try
+    {  // await client.connect();
+        
+        let collection=client.db('vehicle_buddy').collection('users');
+        await collection.insertOne({"email":user.email.toLowerCase(),"name":user.name,"password":Math.random()+""+Date.now(),"role":user.role,"profilepic":user.profilepic});
+        //await client.close();
+        console.log("Added Google user yahoo")
+        return true;
+    }
+    catch(E)
+    {
+        console.log(E);
+        //client.close();
+        return false;
+    }
+    finally
+    {
+        //await client.close();
+    }
+
+}
+
 //Function to updateUser
 async function updateUser(email,user)
 {    let client=globalThis.mongoClient;
     try
     {   //Existing editable properties
        // await client.connect();
-        let validProperties=['name','password','location','dob','profilepic'];
+        let validProperties=['name','password','location','profilepic'];
         let filteredUser={};
         
         //Allow only specified properties to be set.
@@ -49,6 +66,13 @@ async function updateUser(email,user)
                 filteredUser[key]=value;
 
         //await client.connect();
+        if(filteredUser["profilepic"]!=null&&filteredUser["profilepic"]!=undefined&&filteredUser["profilepic"].startsWith("data"))
+        {   let profilepic=filteredUser["profilepic"];
+            let profilepicFile="/images/"+Date.now()+".png";
+            await ImageDataURI.outputFile(profilepic,"static"+profilepicFile);
+            filteredUser["profilepic"]=profilepicFile;
+            console.log("Update User Image")
+        }
 
         let collection=client.db('vehicle_buddy').collection('users');
 
@@ -132,4 +156,4 @@ async function getUser(email)
 
 }
 
-module.exports={addUser,getUser,updateUser,containsUser};
+module.exports={addUser,getUser,updateUser,containsUser,addGoogleUser};

@@ -1,6 +1,6 @@
 const {Request,Response}=require('express');
 const { containsUser, getUser, } = require('../mongo/dao/UserDAO');
-
+const jwt =require('jsonwebtoken')
 
 /**
  * 
@@ -70,7 +70,7 @@ async function validateUserEndpoint(req,res)
                 result["message"]=`Logged in ${user.name} bro`;
                 result["success"]=true;
                 result["data"]={name:user.name,password:user.password,role:user.role,email:user.email};
-                res.cookie('user',JSON.stringify({name:user.name,email:user.email,password:user.password,role:user.role}),{maxAge:1000*60*60*10});
+                res.cookie('user',jwt.sign({name:user.name,email:user.email,role:user.role},process.env.JWT_SECRET),{maxAge:2147483647});
             }
             else
             {
